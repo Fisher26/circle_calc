@@ -102,8 +102,13 @@
 					left: newPlace, 
 					marginLeft: offset + "%"}).text(el.val());
 			}).trigger('change');
-			$('#percentage').on('change', function(){
-				calculate();
+			
+			$('#percentage').on('input', function(){
+				let val = $('#percentage').val()
+					newVal = 360 * val / 100
+					change = val - newVal;
+				$('.circle').attr('stroke-dasharray', newVal + ', 20000');
+				$('.number').html(val);
 			});
 			$('#calc').on('click', function(){
 				calculate();
