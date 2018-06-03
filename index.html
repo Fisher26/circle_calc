@@ -11,11 +11,17 @@
 		<div class="row">
 			<div class="col-6 mt-5">
 				<div class="form-group">
-					<label for="pixelWidth">Pixel Width</label>
+					<label for="pixelWidth" class="mb-0">Pixel Width</label>
+					<div class="d-block">
+						<small class="form-text text-danger" id="inputWarning">Please enter a value</small>
+					</div>
 					<input type="text" class="form-control" name="pixelWidth" id="pixelWidth" value="0">
 				</div>
 				<div class="form-group">
-					<label for="formControlRange">Percentage of circle</label>
+					<label for="formControlRange" class="mb-0">Percentage of circle</label>
+					<div class="d-block">
+						<small class="form-text text-danger mb-5" id="sliderWarning">Please set a value</small>
+					</div>
 					<input type="range" class="form-control-range mt-3" id="percentage" min="0" max="100" value="0" step="1">
 					<output for="percentage" class="input-value"></output>
 				</div>
@@ -51,6 +57,7 @@
 					dV = circumference * (percentage/100)
 					gV = circumference - (dV/2);
 				if(pw > 0 && percentage > 0){
+					$('.text-danger').hide();
 					$('#dashValue').html(dV.toFixed(3));
 					$('#gapValue').html(gV.toFixed(3));
 					$('#renderTarget').html(' ');
@@ -62,6 +69,16 @@
 						percent: percentage
 					});
 				}
+				else if(pw == 0){
+					$('#inputWarning').show();
+				}
+				else if(percentage == 0){
+					$('#sliderWarning').show();
+				}
+				else if(pw == 0 && percentage ==0){
+					$('.text-danger').show();
+				}
+
 			}
 			$('#percentage').on('input', function(){
 				let el = $(this)
