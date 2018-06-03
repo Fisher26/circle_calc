@@ -73,7 +73,7 @@
 					left: newPlace, 
 					marginLeft: offset + "%"}).text(el.val());
 			}).trigger('change');
-			$('#percentage').on('input', function(){
+			$('#percentage').on('change', function(){
 				calculate();
 			});
 			$('#calc').on('click', function(){
