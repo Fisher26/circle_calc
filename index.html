@@ -124,6 +124,24 @@
 			$('#calc').on('click', function(){
 				calculate();
 			});
+			$('#pixelWidth').on('input', function(){
+				if(initial == 'complete'){
+					let val = $('#percentage').val()
+					newVal = 360 * val / 100
+					change = val - newVal;
+					$('.circle').attr('stroke-dasharray', newVal + ', 20000');
+					$('.number').html(val);
+					let pw = $('#pixelWidth').val();
+					circumference = 2 * 3.14 * (pw/2)
+					dV = circumference * (val/100)
+					gV = circumference - (dV/2);
+					if(initial == 'complete'){
+						$('.text-danger').hide();
+						$('#dashValue').html(dV.toFixed(3));
+						$('#gapValue').html(gV.toFixed(3));
+					};
+				}
+			})
 		});
 	</script>
 </body>
