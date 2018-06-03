@@ -12,7 +12,7 @@
 			<div class="col-6 mt-5">
 				<div class="form-group">
 					<label for="pixelWidth">Pixel Width</label>
-					<input type="text" class="form-control" name="pixelWidth" id="pixelWidth">
+					<input type="text" class="form-control" name="pixelWidth" id="pixelWidth" value="0">
 				</div>
 				<div class="form-group">
 					<label for="formControlRange">Percentage of circle</label>
@@ -50,21 +50,23 @@
 					circumference = 2 * 3.14 * (pw/2)
 					dV = circumference * (percentage/100)
 					gV = circumference - (dV/2);
-				$('#dashValue').html(dV.toFixed(3));
-				$('#gapValue').html(gV.toFixed(3));
-				$('#renderTarget').html(' ');
-				$("#renderTarget").circliful({
-					backgroundColor: 'none',
-					foregroundBorderWidth: 5,
-					fontColor: '#0069d9',
-					foregroundColor: '#0069d9',
-					percent: percentage
-				});
+				if(pw > 0 && percentage > 0){
+					$('#dashValue').html(dV.toFixed(3));
+					$('#gapValue').html(gV.toFixed(3));
+					$('#renderTarget').html(' ');
+					$('#renderTarget').circliful({
+						backgroundColor: 'none',
+						foregroundBorderWidth: 5,
+						fontColor: '#0069d9',
+						foregroundColor: '#0069d9',
+						percent: percentage
+					});
+				}
 			}
 			$('#percentage').on('input', function(){
 				let el = $(this)
 					width = el.width()
-					newPoint = (el.val() - el.attr("min")) / (el.attr("max") - el.attr("min")); 
+					newPoint = (el.val() - el.attr("min")) / (el.attr('max') - el.attr('min')); 
 					offset = -2.5;
 				if (newPoint < 0) { newPlace = 0; }
 				else if (newPoint > 1) { newPlace = width; }
@@ -78,7 +80,7 @@
 			});
 			$('#calc').on('click', function(){
 				calculate();
-			})
+			});
 		});
 	</script>
 </body>
