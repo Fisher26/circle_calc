@@ -122,7 +122,9 @@
 				};
 			});
 			$('#calc').on('click', function(){
-				calculate();
+				if(initial != 'complete'){
+					calculate();
+				}
 			});
 			$('#pixelWidth').on('input', function(){
 				if(initial == 'complete'){
